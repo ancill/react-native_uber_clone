@@ -19,7 +19,14 @@ https://reactnavigation.org/docs/getting-started/
 
 https://github.com/FaridSafi/react-native-google-places-autocomplete
 
+https://github.com/react-native-maps/react-native-maps
+
 ### Google
 
 Directions API
 Places API
+
+## Debug stuff
+
+    rm -rf node_modules
+    expo r -c      s

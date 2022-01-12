@@ -2,6 +2,8 @@ import React from "react";
 import { View, Text, SafeAreaView, Image } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import NavOptions from "../components/NavOptions";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import { GOOGLE_MAPS_APIKEY } from "@env";
 
 const HomeScreen = () => {
   return (
@@ -15,6 +17,19 @@ const HomeScreen = () => {
           }}
           source={{
             uri: "https://links.papareact.com/gzs",
+          }}
+        />
+
+        <GooglePlacesAutocomplete
+          placeholder="Search"
+          debounce={400}
+          onPress={(data, details = null) => {
+            // 'details' is provided when fetchDetails = true
+            console.log(data, details);
+          }}
+          query={{
+            key: GOOGLE_MAPS_APIKEY,
+            language: "en",
           }}
         />
         <NavOptions />

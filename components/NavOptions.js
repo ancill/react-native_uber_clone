@@ -1,10 +1,10 @@
-import React from "react"
-import { View, Text, TouchableOpacity, FlatList, Image } from "react-native"
-import tw from "tailwind-react-native-classnames"
-import { Icon } from "react-native-elements"
-import { useNavigation } from "@react-navigation/native"
-import { useSelector } from "react-redux"
-import { selectorOrigin } from "../slices/navSlice"
+import React from "react";
+import { View, Text, TouchableOpacity, FlatList, Image } from "react-native";
+import tw from "tailwind-react-native-classnames";
+import { Icon } from "react-native-elements";
+import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { selectorOrigin } from "../slices/navSlice";
 
 const data = [
   {
@@ -19,11 +19,11 @@ const data = [
     image: "https://links.papareact.com/28w",
     screen: "EatsScreen",
   },
-]
+];
 
 const NavOptions = () => {
-  const navigation = useNavigation()
-  const origin = useSelector(selectorOrigin)
+  const navigation = useNavigation();
+  const origin = useSelector(selectorOrigin);
 
   return (
     <FlatList
@@ -34,6 +34,7 @@ const NavOptions = () => {
         <TouchableOpacity
           onPress={() => navigation.navigate(item.screen)}
           style={tw`pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40 `}
+          disabled={!origin}
         >
           <View style={tw`${!origin && "opacity-20"}`}>
             <Image
@@ -51,7 +52,7 @@ const NavOptions = () => {
         </TouchableOpacity>
       )}
     />
-  )
-}
+  );
+};
 
-export default NavOptions
+export default NavOptions;

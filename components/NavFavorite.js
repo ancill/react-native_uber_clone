@@ -1,20 +1,21 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { Icon } from "react-native-elements";
+import { useDispatch } from "react-redux";
 import tw from "tailwind-react-native-classnames";
+import { setOrigin, setDestination } from "../slices/navSlice";
 
 const NavFavorite = () => {
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
   const data = [
-    {
-      id: "123",
-      icon: "home",
-      location: "Home",
-      destination: "Code Street, London, UK",
-    },
     {
       id: "23",
       icon: "briefcase",
-      location: "Work",
+      name: "Work",
+      location: { lat: 51.5032973, lng: -0.1195537 },
       destination: "London Eye, London, UK",
     },
   ];
@@ -26,8 +27,19 @@ const NavFavorite = () => {
       )}
       data={data}
       keyExtractor={(item) => item.id}
-      renderItem={({ item: { location, destination, icon } }) => (
-        <TouchableOpacity style={tw`flex-row items-center p-5`}>
+      renderItem={({ item: { location, destination, icon, name } }) => (
+        <TouchableOpacity
+          style={tw`flex-row items-center p-5`}
+          onPress={(data, details = null) => {
+            dispatch(
+              setDestination({
+                location: location,
+                description: destination,
+              })
+            );
+            navigation.navigate("MapScreen");
+          }}
+        >
           <Icon
             style={tw`mr-4 bg-gray-300 p-3 rounded-full`}
             name={icon}
@@ -36,7 +48,7 @@ const NavFavorite = () => {
             size={18}
           />
           <View>
-            <Text style={tw`font-semibold text-lg`}>{location}</Text>
+            <Text style={tw`font-semibold text-lg`}>{name}</Text>
             <Text style={tw`text-gray-500`}>{destination}</Text>
           </View>
         </TouchableOpacity>

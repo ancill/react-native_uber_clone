@@ -50,10 +50,27 @@ const NavigateCard = () => {
       </View>
 
       <NavFavorite />
-      <View>
-        <TouchableOpacity style={tw`flex flex-row bg-black`}>
-          <Icon name="car" type="font-awesome" color="white" size={16} />
+      <View
+        style={tw`flex-row bg-white justify-evenly py-2 mt-auto border-t border-gray-100`}
+      >
+        <TouchableOpacity
+          style={tw`flex flex-row justify-between bg-black w-24 px-5 py-3 rounded-full`}
+          onPress={() => navigation.navigate("RideOptionsCard")}
+        >
+          <Icon name="car" type="font-awesome" size={16} color="white" />
           <Text style={tw`text-white text-center`}>Ride</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={tw`flex flex-row justify-between  w-24 px-5 py-3 rounded-full`}
+        >
+          <Icon
+            name="fast-food-outline"
+            type="ionicon"
+            size={16}
+            color="black"
+          />
+          <Text style={tw`text-black text-center`}>Eats</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
